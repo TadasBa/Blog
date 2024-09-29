@@ -5,16 +5,9 @@ import 'C:\\Univerity\\Portfolio\\my-blog\\src\\style.css';
 
 function Header() {
   return (
-    <header className="header">
-      <h1>My Blog</h1>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/projects">Projects</Link>
-      </nav>
-    </header>
+    <h1>Tadas Baltrūnas</h1>
   );
 }
 
 export default Header;
+

@@ -1,38 +1,147 @@
-/* src/styles.css */
+/* Container holding the entire page */
+.container {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack child elements vertically */
+  height: 100vh; /* Full height of the viewport */
+}
+
+/* Main content area with sidebar */
+.main-content {
+  display: flex; /* Use flexbox for layout */
+  flex-grow: 1; /* Allow this area to grow */
+}
+
+
+/* Sidebar styling */
+.sidebar {
+  width: 560px; /* Fixed width for sidebar */
+  background-color: rgba(32, 33, 36, 1); /* Dark background color */
+  padding: 70px; /* Padding around the content */
+  color: white; /* Text color */
+}
+
+/* List styling in the sidebar */
+.sidebar ul {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove padding */
+  width: 100px;
+}
+
+/* List item styling */
+.sidebar ul li {
+  position: relative; /* Position relative for pseudo-elements */
+  margin: 10px 0; /* Margin between list items */
+  padding-left: 40px; /* Initial padding for the line */
+  transition: padding-left 0.3s ease; /* Smooth transition for padding */
+}
+
+/* Line before each list item */
+.sidebar ul li::before {
+  content: ''; /* Empty content for the pseudo-element */
+  position: absolute; /* Position absolutely within the list item */
+  left: 0; /* Align to the left */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust position */
+  width: 30px; /* Initial width of the line */
+  height: 1.5px; /* Thickness of the line */
+  background-color: gray; /* Default line color */
+  transition: width 0.3s ease, background-color 0.3s ease; /* Smooth transition for width and color */
+}
+
+/* Anchor link styling */
+.sidebar ul li a {
+  color: white; /* Link color */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Allow padding and transforms */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and position */
+}
+
+/* Hover effect for the line */
+.sidebar ul li:hover::before {
+  width: 60px; /* Line expands on hover */
+  background-color: white; /* Change line color on hover */
+}
+
+/* Adjust padding on hover */
+.sidebar ul li:hover {
+  padding-left: 40px; /* Moves the text to the right */
+}
+
+/* Move text on hover */
+.sidebar ul li:hover a {
+  transform: translateX(30px); /* Move text to the right */
+}
+
+/* Active state for current page link */
+.sidebar ul li.active::before {
+  width: 100px; /* Line fully expanded for active page */
+  background-color: #52d1c3; /* Active page line color */
+}
+
+/* Active link styling */
+.sidebar ul li.active a {
+  color: #52d1c3; /* Active page link color */
+}
+
+/* Main content area styling */
+.content {
+  flex-grow: 1; /* Allow content area to grow */
+  padding: 110px 20px 20px 20px; /* Padding around content */
+  background-color: rgba(32, 33, 36, 1); /* Light background for content */
+}
+
+/* Base font settings for the body */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
+  color: white; /* Base text color */
+  background-color: rgba(32, 33, 36, 1);; /* Dark background for body */
+  margin: 0; /* Remove default margin */
 }
 
-.header {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
+/* Headings styling */
+h1 {
+  font-size: 50px;
+  color: white; /* Light color for headings */
+  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
 }
 
-.header nav a {
-  color: #fff;
-  margin: 0 1rem;
-  text-decoration: none;
+
+/* Headings styling */
+h2 {
+  font-size: 20px;
+  color: white; /* Light color for headings */
+  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
 }
 
-.header nav a:hover {
-  text-decoration: underline;
+/* Paragraph styling */
+p {
+  margin-bottom: 20px; /* Space below paragraphs */
 }
 
-.main {
-  padding: 2rem;
+/* General link styling */
+a {
+  color: #64ffda; /* Default link color */
+  text-decoration: none; /* Remove underline */
 }
 
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
+/* Link hover effect */
+a:hover {
+  color: #52d1c3; /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Section padding */
+section {
+  padding: 60px 0; /* Vertical padding for sections */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Sidebar takes full width on small screens */
+    margin-bottom: 20px; /* Space below sidebar */
+  }
+  .main-content {
+    flex-direction: column; /* Stack content vertically on small screens */
+  }
 }
