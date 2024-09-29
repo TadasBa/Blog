@@ -1,8 +1,8 @@
 /* Container holding the entire page */
 .container {
   display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack child elements vertically */
   height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Prevent container from scrolling */
 }
 
 /* Main content area with sidebar */
@@ -11,13 +11,21 @@
   flex-grow: 1; /* Allow this area to grow */
 }
 
+.main-headers{
+  line-height: 15px;
+}
 
 /* Sidebar styling */
 .sidebar {
-  width: 560px; /* Fixed width for sidebar */
+  width: 450px; /* Fixed width for sidebar */
   background-color: rgba(32, 33, 36, 1); /* Dark background color */
   padding: 70px; /* Padding around the content */
   color: white; /* Text color */
+  position: fixed; /* Sidebar stays fixed on the left */
+  top: 0; /* Align to the top of the viewport */
+  bottom: 0; /* Ensure the sidebar stretches the full height of the page */
+  left: 0; /* Align to the left edge of the viewport */
+  overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds viewport height */
 }
 
 /* List styling in the sidebar */
@@ -25,6 +33,7 @@
   list-style-type: none; /* Remove default list styling */
   padding: 0; /* Remove padding */
   width: 100px;
+  line-height: 30px;
 }
 
 /* List item styling */
@@ -50,7 +59,7 @@
 
 /* Anchor link styling */
 .sidebar ul li a {
-  color: white; /* Link color */
+  color: rgba(237, 231, 225, 0.8); /* Link color */
   text-decoration: none; /* Remove underline */
   display: inline-block; /* Allow padding and transforms */
   transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and position */
@@ -70,6 +79,7 @@
 /* Move text on hover */
 .sidebar ul li:hover a {
   transform: translateX(30px); /* Move text to the right */
+  color: rgb(255, 255, 255);
 }
 
 /* Active state for current page link */
@@ -85,29 +95,38 @@
 
 /* Main content area styling */
 .content {
-  flex-grow: 1; /* Allow content area to grow */
-  padding: 110px 20px 20px 20px; /* Padding around content */
+  margin-left: 600px; /* Leave space for the fixed sidebar */
+  flex-grow: 1; /* Allow this area to grow */
+  overflow-y: auto; /* Enable scrolling in the main content */
+  min-height: 100vh; /* Ensure content can grow beyond the viewport */
+  padding: 85px 100px 20px 10px; /* Padding around content */
   background-color: rgba(32, 33, 36, 1); /* Light background for content */
+  box-sizing: border-box; /* Ensure padding is included in the height calculations */
 }
 
 /* Base font settings for the body */
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
-  color: white; /* Base text color */
+  color: rgba(255, 255, 255, 0.75);
   background-color: rgba(32, 33, 36, 1);; /* Dark background for body */
-  margin: 0; /* Remove default margin */
+  margin: 0px; /* Remove default margin */
 }
 
 /* Headings styling */
 h1 {
   font-size: 50px;
+  color: rgba(255, 255, 255, ); /* Light color for headings */
+  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
+}
+
+/* Headings styling */
+h2 {
+  font-size: 30px;
   color: white; /* Light color for headings */
   font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
 }
 
-
-/* Headings styling */
-h2 {
+h3 {
   font-size: 20px;
   color: white; /* Light color for headings */
   font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
@@ -134,6 +153,28 @@ a:hover {
 section {
   padding: 60px 0; /* Vertical padding for sections */
 }
+
+.social-icons {
+  margin-left: -10px;
+  display: flex; /* Use flexbox to align icons in a row */
+  justify-content: left; /* Center the icons horizontally */
+  margin-top: 40px; /* Space above the icons */
+}
+
+.social-icons a {
+  margin: 0 15px; /* Space between icons */
+}
+
+.social-icons img {
+  width: 25px; /* Set a width for the icons */
+  height: 25px; /* Set a height for the icons */
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.social-icons a:hover img {
+  transform: scale(1.1); /* Slightly scale up on hover */
+}
+
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
