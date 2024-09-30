@@ -1,188 +1,184 @@
 /* Container holding the entire page */
 .container {
-  display: flex; /* Use flexbox for layout */
-  height: 100vh; /* Full height of the viewport */
-  overflow: hidden; /* Prevent container from scrolling */
+  display: flex;
+  flex-direction: row; /* Sidebar and content side by side */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevent scrolling */
+  box-sizing: border-box; /* Include padding and border in dimensions */
 }
 
-/* Main content area with sidebar */
+/* Main content area */
 .main-content {
-  display: flex; /* Use flexbox for layout */
-  flex-grow: 1; /* Allow this area to grow */
+  display: flex;
+  flex-grow: 1; /* Expand to fill available space */
+  flex-direction: column;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
-.main-headers{
+.main-headers {
   line-height: 15px;
 }
 
-/* Sidebar styling */
+/* Sidebar */
 .sidebar {
-  width: 450px; /* Fixed width for sidebar */
-  background-color: rgba(32, 33, 36, 1); /* Dark background color */
-  padding: 70px; /* Padding around the content */
-  color: white; /* Text color */
-  position: fixed; /* Sidebar stays fixed on the left */
-  top: 0; /* Align to the top of the viewport */
-  bottom: 0; /* Ensure the sidebar stretches the full height of the page */
-  left: 0; /* Align to the left edge of the viewport */
-  overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds viewport height */
+  width: 450px; /* Fixed width */
+  background-color: rgba(32, 33, 36, 1); /* Dark background */
+  padding: 70px;
+  color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0; /* Full height */
+  left: 0;
+  overflow-y: auto; /* Scroll if needed */
 }
 
-/* List styling in the sidebar */
 .sidebar ul {
-  list-style-type: none; /* Remove default list styling */
-  padding: 0; /* Remove padding */
+  list-style: none;
+  padding: 0;
   width: 100px;
   line-height: 30px;
 }
 
-/* List item styling */
 .sidebar ul li {
-  position: relative; /* Position relative for pseudo-elements */
-  margin: 10px 0; /* Margin between list items */
-  padding-left: 40px; /* Initial padding for the line */
-  transition: padding-left 0.3s ease; /* Smooth transition for padding */
+  position: relative;
+  margin: 10px 0;
+  padding-left: 40px;
+  transition: padding-left 0.3s ease;
 }
 
-/* Line before each list item */
 .sidebar ul li::before {
-  content: ''; /* Empty content for the pseudo-element */
-  position: absolute; /* Position absolutely within the list item */
-  left: 0; /* Align to the left */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust position */
-  width: 30px; /* Initial width of the line */
-  height: 1.5px; /* Thickness of the line */
-  background-color: gray; /* Default line color */
-  transition: width 0.3s ease, background-color 0.3s ease; /* Smooth transition for width and color */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 1.5px;
+  background-color: gray;
+  transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-/* Anchor link styling */
-.sidebar ul li a {
-  color: rgba(237, 231, 225, 0.8); /* Link color */
-  text-decoration: none; /* Remove underline */
-  display: inline-block; /* Allow padding and transforms */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and position */
-}
-
-/* Hover effect for the line */
 .sidebar ul li:hover::before {
-  width: 60px; /* Line expands on hover */
-  background-color: white; /* Change line color on hover */
+  width: 60px;
+  background-color: white;
 }
 
-/* Adjust padding on hover */
-.sidebar ul li:hover {
-  padding-left: 40px; /* Moves the text to the right */
-}
-
-/* Move text on hover */
 .sidebar ul li:hover a {
-  transform: translateX(30px); /* Move text to the right */
-  color: rgb(255, 255, 255);
+  transform: translateX(30px);
+  color: #fff;
 }
 
-/* Active state for current page link */
 .sidebar ul li.active::before {
-  width: 100px; /* Line fully expanded for active page */
-  background-color: #52d1c3; /* Active page line color */
+  width: 100px;
+  background-color: #52d1c3;
 }
 
-/* Active link styling */
 .sidebar ul li.active a {
-  color: #52d1c3; /* Active page link color */
+  color: #52d1c3;
 }
 
-/* Main content area styling */
+/* Sidebar links */
+.sidebar ul li a {
+  color: rgba(237, 231, 225, 0.8);
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Main content */
 .content {
-  margin-left: 600px; /* Leave space for the fixed sidebar */
-  flex-grow: 1; /* Allow this area to grow */
-  overflow-y: auto; /* Enable scrolling in the main content */
-  min-height: 100vh; /* Ensure content can grow beyond the viewport */
-  padding: 85px 100px 20px 10px; /* Padding around content */
-  background-color: rgba(32, 33, 36, 1); /* Light background for content */
-  box-sizing: border-box; /* Ensure padding is included in the height calculations */
+  margin-left: 600px; /* Space for sidebar */
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 100vh;
+  padding: 85px 100px 20px 10px;
+  background-color: rgba(32, 33, 36, 1);
+  box-sizing: border-box;
 }
 
-/* Base font settings for the body */
+/* Global styles */
 body {
-  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   color: rgba(255, 255, 255, 0.75);
-  background-color: rgba(32, 33, 36, 1);; /* Dark background for body */
-  margin: 0px; /* Remove default margin */
+  background-color: rgba(32, 33, 36, 1);
+  margin: 0;
 }
 
-/* Headings styling */
+/* Headings */
+h1, h2, h3 {
+  color: white;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
 h1 {
   font-size: 50px;
-  color: rgba(255, 255, 255, ); /* Light color for headings */
-  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
 }
 
-/* Headings styling */
 h2 {
   font-size: 30px;
-  color: white; /* Light color for headings */
-  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
 }
 
 h3 {
   font-size: 20px;
-  color: white; /* Light color for headings */
-  font-family: 'Segoe UI', Tahoma, sans-serif; /* Font family */
 }
 
-/* Paragraph styling */
+/* Paragraphs */
 p {
-  margin-bottom: 20px; /* Space below paragraphs */
+  margin-bottom: 20px;
 }
 
-/* General link styling */
+/* Links */
 a {
-  color: #64ffda; /* Default link color */
-  text-decoration: none; /* Remove underline */
+  color: #64ffda;
+  text-decoration: none;
 }
 
-/* Link hover effect */
 a:hover {
-  color: #52d1c3; /* Change color on hover */
-  text-decoration: underline; /* Add underline on hover */
+  color: #52d1c3;
+  text-decoration: underline;
 }
 
-/* Section padding */
-section {
-  padding: 60px 0; /* Vertical padding for sections */
-}
-
+/* Social icons */
 .social-icons {
   margin-left: -10px;
-  display: flex; /* Use flexbox to align icons in a row */
-  justify-content: left; /* Center the icons horizontally */
-  margin-top: 40px; /* Space above the icons */
+  display: flex;
+  justify-content: left;
+  margin-top: 40px;
 }
 
 .social-icons a {
-  margin: 0 15px; /* Space between icons */
+  margin: 0 15px;
 }
 
 .social-icons img {
-  width: 25px; /* Set a width for the icons */
-  height: 25px; /* Set a height for the icons */
-  transition: transform 0.3s ease; /* Smooth scaling effect */
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
 }
 
 .social-icons a:hover img {
-  transform: scale(1.1); /* Slightly scale up on hover */
+  transform: scale(1.1);
 }
 
-
-/* Responsive adjustments for smaller screens */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .sidebar {
-    width: 100%; /* Sidebar takes full width on small screens */
-    margin-bottom: 20px; /* Space below sidebar */
+  .container {
+    flex-direction: column; /* Stack sidebar and content vertically */
+    height: auto;
   }
+
+  .sidebar {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
   .main-content {
-    flex-direction: column; /* Stack content vertically on small screens */
+    flex-direction: column;
   }
 }
