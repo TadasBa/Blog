@@ -1,125 +1,107 @@
-/* Container holding the entire page */
-.container {
-  display: flex;
-  flex-direction: row; /* Sidebar and content side by side */
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Prevent scrolling */
-  box-sizing: border-box; /* Include padding and border in dimensions */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
+
+/* Adjust header styling for better spacing and visual clarity */
+.header {
+  text-align: center;
+  /* background-color: rgba(32, 33, 36, 0); */
+  background-color: rgb(238, 238, 238);
+  color: black;
+  padding: 20px; /* Add padding for more breathing room */
 }
 
-/* Main content area */
-.main-content {
-  display: flex;
-  flex-grow: 1; /* Expand to fill available space */
-  flex-direction: column;
-  overflow-y: auto; /* Enable vertical scrolling */
-}
-
-.main-headers {
-  line-height: 15px;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 450px; /* Fixed width */
-  background-color: rgba(32, 33, 36, 1); /* Dark background */
-  padding: 70px;
-  color: white;
-  position: fixed;
-  top: 0;
-  bottom: 0; /* Full height */
-  left: 0;
-  overflow-y: auto; /* Scroll if needed */
-}
-
-.sidebar ul {
-  list-style: none;
+.header ul {
+  text-align: center;
+  margin-right: 30px; /* Centering header menu */
   padding: 0;
-  width: 100px;
-  line-height: 30px;
 }
 
-.sidebar ul li {
-  position: relative;
-  margin: 10px 0;
-  padding-left: 40px;
-  transition: padding-left 0.3s ease;
-}
-
-.sidebar ul li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 1.5px;
-  background-color: gray;
-  transition: width 0.3s ease, background-color 0.3s ease;
-}
-
-.sidebar ul li:hover::before {
-  width: 60px;
-  background-color: white;
-}
-
-.sidebar ul li:hover a {
-  transform: translateX(30px);
-  color: #fff;
-}
-
-.sidebar ul li.active::before {
-  width: 100px;
-  background-color: #52d1c3;
-}
-
-.sidebar ul li.active a {
-  color: #52d1c3;
-}
-
-/* Sidebar links */
-.sidebar ul li a {
-  color: rgba(237, 231, 225, 0.8);
-  text-decoration: none;
+.header li {
+  list-style: none;
+  padding: 10px;
+  transition: transform 0.3s ease;
   display: inline-block;
-  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Main content */
-.content {
-  margin-left: 600px; /* Space for sidebar */
-  flex-grow: 1;
-  overflow-y: auto;
+.header li:hover {
+  transform: translateY(-5px) scale(1.05); /* Smooth hover effect */
+}
+
+.footer {
+  /* background-color: rgba(32, 33, 36, 0); */
+  background-color: rgb(238, 238, 238);
+  text-align: center;
+  padding: 0px; /* Padding to space out footer content */
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
+/* Ensure footer stays at the bottom */
+.page-wrapper {
   min-height: 100vh;
-  padding: 85px 100px 20px 10px;
-  background-color: rgba(32, 33, 36, 1);
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex-grow: 1; /* Ensures the content container takes up available space */
+  padding: 20px;
+  box-sizing: border-box; /* Account for padding */
+}
+
+.content{
+  text-align: justify;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.content h2{
+  text-align: center;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: black;
 }
 
 /* Global styles */
 body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  color: rgba(255, 255, 255, 0.75);
-  background-color: rgba(32, 33, 36, 1);
+  font-family: 'Fira Code', monospace;
+  color: black;
+  background-color: rgb(238, 238, 238);
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 /* Headings */
 h1, h2, h3 {
-  color: white;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: black;
+}
+
+.header h1{
+  letter-spacing: 12px;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 45px; /* Reduce size for better spacing */
+  margin-bottom: 15px; /* Space under the heading */
 }
 
 h2 {
   font-size: 30px;
+  margin-bottom: 10px; /* Add space between heading and content */
 }
 
 h3 {
   font-size: 20px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-size: 15px;
+  margin-bottom: 10px;
 }
 
 /* Paragraphs */
@@ -127,23 +109,11 @@ p {
   margin-bottom: 20px;
 }
 
-/* Links */
-a {
-  color: #64ffda;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #52d1c3;
-  text-decoration: underline;
-}
-
 /* Social icons */
 .social-icons {
-  margin-left: -10px;
+  margin-top: 20px; /* Reduce top margin for better balance */
   display: flex;
-  justify-content: left;
-  margin-top: 40px;
+  justify-content: center; /* Center social icons */
 }
 
 .social-icons a {
@@ -156,29 +126,66 @@ a:hover {
   transition: transform 0.3s ease;
 }
 
+#githubIcon{
+  width: 28px;
+  height: 28px;
+  margin-top: -2px;
+}
+
+#backIcon{
+  margin-bottom: -8px;
+  width: 28px;
+  height: 28px;
+}
+
 .social-icons a:hover img {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column; /* Stack sidebar and content vertically */
+  .page-wrapper {
+    flex-direction: column;
     height: auto;
   }
 
-  .sidebar {
+  .header {
     width: 100%;
     position: relative;
     margin-bottom: 20px;
   }
 
-  .content {
+  .content-container {
     margin-left: 0;
     padding: 20px;
   }
 
-  .main-content {
-    flex-direction: column;
+  .footer {
+    position: relative; /* Adjust footer position for smaller screens */
   }
 }
+
+
+/* ABOUT page */
+
+.about-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px; /* Add some space between text and image */
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image {
+  flex: 0 0 300px; /* You can adjust the width of the image */
+  position: relative;
+  top: 108px; /* Move the image up by 10px */
+}
+
+.profile-image {
+  width: 100%; /* Make sure the image fits the container */
+  border-radius: 10px; /* Optional: adds rounded corners */
+}
+

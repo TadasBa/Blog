@@ -1,94 +1,76 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './style.css';
-import Header from './components/Header';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'; // Import Transition components
+import './style.css'; // Assuming you have this CSS file for styles
 import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Projects from './pages/Projects';
+import Project from './pages/Project'; // Make sure this file exists
 import githubIcon from './img/github.svg'; // Import the image
 import emailIcon from './img/email.svg'; // Import the image
 import linkedinIcon from './img/linkedin.svg'; // Import the image
 
 function App() {
-  useEffect(() => {
-    // Create a div for the hover effect
-    const hoverEffect = document.createElement('div');
-    hoverEffect.classList.add('cursor-hover-effect');
-    document.body.appendChild(hoverEffect);
-
-    // Update the position of the effect based on mouse movement
-    const updateHoverEffectPosition = (e) => {
-      hoverEffect.style.left = `${e.pageX}px`; // Update left position
-      hoverEffect.style.top = `${e.pageY}px`; // Update top position
-    };
-
-    document.addEventListener('mousemove', updateHoverEffectPosition);
-
-    // Add active effect on mouse enter
-    const handleMouseEnter = () => {
-      hoverEffect.classList.add('active-effect');
-    };
-
-    // Remove active effect on mouse leave
-    const handleMouseLeave = () => {
-      hoverEffect.classList.remove('active-effect');
-    };
-
-    document.addEventListener('mouseover', handleMouseEnter);
-    document.addEventListener('mouseout', handleMouseLeave);
-
-    // Cleanup event listeners on component unmount
-    return () => {
-      document.removeEventListener('mousemove', updateHoverEffectPosition);
-      document.removeEventListener('mouseover', handleMouseEnter);
-      document.removeEventListener('mouseout', handleMouseLeave);
-      document.body.removeChild(hoverEffect); // Remove hover effect element
-    };
-  }, []);
+  const location = useLocation(); // Get the current location
+  const isHomePage = location.pathname === '/';
 
   return (
-    <Router>
-      <div className="container">
-        <div className="main-content">
-          <nav className="sidebar">
-            <div className="main-headers">
-              <h1>Tadas Baltrūnas</h1>
-              <h3>Software Developer & Student</h3>
-              <h4>Passionate about coding and continuous learning in tech.</h4>
-              <br></br>
+    <div className="page-wrapper">
+      {/* Conditionally render header only on the home page */}
+      {isHomePage && (
+        <header className="header">
+          <div className="main-headers">       
+            <h1>TADAS BALTRŪNAS</h1>            
+            <h4>SOFTWARE DEVELOPER PASSIONATE ABOUT CONTINUOUS LEARNING IN TECH</h4>
+            <nav className="navigation-panel">
               <ul>
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/about">ABOUT</Link></li>
-                <li><Link to="/blog">BLOG</Link></li>
+                <li><Link to="/blog-page">BLOG</Link></li>
                 <li><Link to="/projects">PROJECTS</Link></li>
               </ul>
-              <div className="social-icons">
-                <a href="https://github.com/TadasBa" target="_blank" aria-label="GitHub">
-                    <img src={githubIcon} alt="GitHub" />
-                </a>
-                <a href="mailto:tadas@baltrunas.lt" target="_blank" aria-label="Email">
-                    <img src={emailIcon}  alt="Email" />
-                </a>
-                <a href="https://www.linkedin.com/in/tadasba/" target="_blank" aria-label="LinkedIn">
-                    <img src={linkedinIcon} alt="LinkedIn" />
-                </a>
-              </div>
+            </nav>
+          </div>
+        </header>
+      )}
 
-            </div>
-          </nav>
-          <main className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/projects" element={<Projects />} />
-            </Routes>
-          </main>
-        </div>
-      </div>
-    </Router>
+      <main className="content-container">
+            <div className="content">
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/blog-page" element={<Blog />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:id" element={<Project />} /> {/* Dynamic route for individual project pages */}
+              </Routes>
+            </div>        
+      </main>
+
+      {/* Conditionally render footer only on the home page */}
+      {isHomePage && (
+        <footer className="footer">
+          <div className="social-icons">
+            <a href="https://github.com/TadasBa" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <img src={githubIcon} alt="GitHub" id="githubIcon"/>
+            </a>
+            <a href="mailto:tadas@baltrunas.lt" target="_blank" rel="noopener noreferrer" aria-label="Email">
+              <img src={emailIcon} alt="Email" />
+            </a>
+            <a href="https://www.linkedin.com/in/tadasba/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <img src={linkedinIcon} alt="LinkedIn" />
+            </a>
+          </div>          
+        </footer>
+      )}
+    </div>
   );
 }
 
-export default App;
+const WrappedApp = () => (
+  <Router basename="/Blog">
+    <App />
+  </Router>
+);
+
+export default WrappedApp;

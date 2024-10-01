@@ -1,5 +1,8 @@
 // src/pages/Blog.js
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import the Link component
+import backIcon from 'C:\\Univerity\\Portfolio\\my-blog\\src\\img\\back.svg'; // Import the image
+
 
 function Blog() {
   const posts = [
@@ -9,7 +12,11 @@ function Blog() {
 
   return (
     <div>
-      <h2>Blog Posts</h2>
+      <Link to="/" aria-label="Back">
+        <img src={backIcon} alt="back" id="backIcon" />
+        BACK
+      </Link>
+      <h1>Blog</h1>
       <ul>
         {posts.map(post => (
           <li key={post.id}>
