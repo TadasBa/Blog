@@ -4,6 +4,7 @@ import './style.css'; // Assuming you have this CSS file for styles
 import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost'; // Import the BlogPost component
 import { Projects, projectList } from './pages/Projects';
 import Project from './pages/Project'; // Make sure this file exists
 import githubIcon from './img/github.svg'; // Import the image
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/blog-page" element={<Blog />} />
+                <Route path="/blog-page/:postId" element={<BlogPost />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:projectId" element={<Project projectData={projectList} />} />
               </Routes>
