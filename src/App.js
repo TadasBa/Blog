@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group'; // Import Transition components
 import './style.css'; // Assuming you have this CSS file for styles
 import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
-import Projects from './pages/Projects';
+import { Projects, projectList } from './pages/Projects';
 import Project from './pages/Project'; // Make sure this file exists
 import githubIcon from './img/github.svg'; // Import the image
 import emailIcon from './img/email.svg'; // Import the image
@@ -42,7 +41,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/blog-page" element={<Blog />} />
                 <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:id" element={<Project />} /> {/* Dynamic route for individual project pages */}
+                <Route path="/projects/:projectId" element={<Project projectData={projectList} />} />
               </Routes>
             </div>        
       </main>
